@@ -61,4 +61,20 @@ public class UsersListParserTest {
         assertEquals(usersList.get(0).getFriends().getFriendsList().size(), EXPECTED_FRIENDS_NUMBER);
 
     }
+
+    @Test
+    public void parseFromGSON() throws Exception {
+        mInputStream = InputStreamMocks.inputStream(mJSONFileSource);
+        when(mIHttpClient.request(Matchers.anyString())).thenReturn(mInputStream);
+        InputStream response = mIHttpClient.request("any http");
+        final UsersListParserFactory usersListParserFactory = new UsersListParserFactory();
+        final IUsersList users = usersListParserFactory.createListParserForGSON(response).parse();
+        List<IUser> usersList = users.getUsersList();
+        assertEquals(usersList.size(), EXPECTED_LIST_SIZE);
+        assertEquals(usersList.get(0).getId(), EXPECTED_ID);
+        assertEquals(usersList.get(0).getName(), EXPECTED_NAME);
+        assertEquals(usersList.get(0).getTags().length, EXPECTED_TAGS_ARRAY_SIZE);
+        assertEquals(usersList.get(0).getFriends().getFriendsList().size(), EXPECTED_FRIENDS_NUMBER);
+
+    }
 }
