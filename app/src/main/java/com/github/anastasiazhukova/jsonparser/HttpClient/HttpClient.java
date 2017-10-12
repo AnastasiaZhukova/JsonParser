@@ -6,6 +6,6 @@ public class HttpClient implements IHttpClient {
 
     @Override
     public InputStream request(String pURL) throws Exception {
-        throw  new IllegalStateException("HttpClient is not implemented");
+        throw new IllegalStateException("HttpClient is not implemented");
     }
 }
