@@ -60,4 +60,20 @@ public class UserParserTest {
         Log.d(TAG, user.getFriendlyRegisteredTime().toString());
     }
 
+    @Test
+    public void parseForGSON() throws Exception {
+        mInputStream = InputStreamMocks.inputStream(mJSONFileSource);
+        when(mIHttpClient.request(Matchers.anyString())).thenReturn(mInputStream);
+        InputStream response = mIHttpClient.request("any http");
+        final UserParserFactory userParserFactory = new UserParserFactory();
+        final IUser user = userParserFactory.createParserGSON(response).parse();
+        assertEquals(user.getId(), EXPECTED_ID);
+        assertEquals(user.getName(), EXPECTED_NAME);
+        assertEquals(user.getTags().length, EXPECTED_TAGS_ARRAY_SIZE);
+        assertEquals(user.getFriends().getFriendsList().size(), EXPECTED_FRIENDS_NUMBER);
+        assertEquals(user.getFriends().getFriendsList().get(0).getId(), EXPECTED_FIRST_FRIEND_ID);
+        Log.d(TAG, user.getFriendlyRegisteredTime().toString());
+    }
+
+
 }
