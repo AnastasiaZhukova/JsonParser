@@ -12,13 +12,13 @@ public class UserParserJson implements IUserParser {
 
     private final InputStream mInputStream;
 
-    public UserParserJson(InputStream pInputStream) {
+    public UserParserJson(final InputStream pInputStream) {
         mInputStream = pInputStream;
     }
 
     @Override
     public IUser parse() throws Exception {
-        JSONObject jsonObject = new JSONObject(IOUtils.toString(mInputStream));
+        final JSONObject jsonObject = new JSONObject(IOUtils.toString(mInputStream));
         return new UserJson(jsonObject);
     }
 }

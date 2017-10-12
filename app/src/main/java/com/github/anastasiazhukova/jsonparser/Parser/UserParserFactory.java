@@ -7,11 +7,11 @@ import java.io.InputStream;
 
 public class UserParserFactory {
 
-    public IUserParser createParserJSON(InputStream pInputStream) {
+    public IUserParser createParserJSON(final InputStream pInputStream) {
         return new UserParserJson(pInputStream);
     }
 
-    public IUserParser createParserGSON(InputStream pInputStream) {
+    public IUserParser createParserGSON(final InputStream pInputStream) {
         return new UserParserGson(pInputStream);
     }
 }

@@ -13,14 +13,14 @@ public class UsersListParserGson implements IUsersListParser {
 
     private InputStream mInputStream;
 
-    public UsersListParserGson(InputStream pInputStream) {
+    public UsersListParserGson(final InputStream pInputStream) {
         mInputStream = pInputStream;
     }
 
     @Override
     public IUsersList parse() throws Exception {
-        Reader reader = new InputStreamReader(mInputStream);
-        UserGson[] result = new Gson().fromJson(reader, UserGson[].class);
+        final Reader reader = new InputStreamReader(mInputStream);
+        final UserGson[] result = new Gson().fromJson(reader, UserGson[].class);
         return new UsersListGson(Arrays.asList(result));
     }
 }

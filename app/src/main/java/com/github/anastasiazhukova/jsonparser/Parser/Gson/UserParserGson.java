@@ -12,13 +12,13 @@ public class UserParserGson implements IUserParser {
 
     private final InputStream mInputStream;
 
-    public UserParserGson(InputStream pInputStream) {
+    public UserParserGson(final InputStream pInputStream) {
         mInputStream = pInputStream;
     }
 
     @Override
     public IUser parse() throws Exception {
-        Reader reader = new InputStreamReader(mInputStream);
+        final Reader reader = new InputStreamReader(mInputStream);
         return new Gson().fromJson(reader, UserGson.class);
     }
 

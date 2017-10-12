@@ -16,12 +16,12 @@ public class FriendsListParserJson implements IFriendsListParser {
     private final InputStream mInputStream;
     private final JSONArray mJsonArray;
 
-    public FriendsListParserJson(InputStream pInputStream) {
+    public FriendsListParserJson(final InputStream pInputStream) {
         mInputStream = pInputStream;
         mJsonArray = null;
     }
 
-    public FriendsListParserJson(JSONArray pJsonArray) {
+    public FriendsListParserJson(final JSONArray pJsonArray) {
         mJsonArray = pJsonArray;
         mInputStream = null;
     }
@@ -38,19 +38,20 @@ public class FriendsListParserJson implements IFriendsListParser {
     }
 
     private IFriendsList parseFromInputSteam() throws Exception {
-        JSONArray jsonArray = new JSONArray(IOUtils.toString(mInputStream));
-        List<FriendJson> friendsJsonList = new ArrayList<>();
+        final JSONArray jsonArray = new JSONArray(IOUtils.toString(mInputStream));
+        final List<FriendJson> friendsJsonList = new ArrayList<>();
         for (int i = 0; i < jsonArray.length(); i++) {
-            JSONObject jsonObject = jsonArray.getJSONObject(i);
+            final JSONObject jsonObject = jsonArray.getJSONObject(i);
             friendsJsonList.add(new FriendJson(jsonObject));
         }
         return new FriendsListJson(friendsJsonList);
     }
 
     private IFriendsList parseFromJsonArray() throws Exception {
-        List<FriendJson> friendsJsonList = new ArrayList<>();
+        final List<FriendJson> friendsJsonList = new ArrayList<>();
+        assert mJsonArray != null;
         for (int i = 0; i < mJsonArray.length(); i++) {
-            JSONObject jsonObject = mJsonArray.getJSONObject(i);
+            final JSONObject jsonObject = mJsonArray.getJSONObject(i);
             friendsJsonList.add(new FriendJson(jsonObject));
         }
         return new FriendsListJson(friendsJsonList);

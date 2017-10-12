@@ -10,14 +10,14 @@ public class FriendsListJson implements IFriendsList {
 
     private List<FriendJson> mFriendsList;
 
-    public FriendsListJson(List<FriendJson> pFriendsList) {
+    public FriendsListJson(final List<FriendJson> pFriendsList) {
         mFriendsList = pFriendsList;
     }
 
     @Override
     public List<IFriend> getFriendsList() {
-        List<IFriend> friendsList = new ArrayList<>();
-        for (FriendJson friend :
+        final List<IFriend> friendsList = new ArrayList<>();
+        for (final FriendJson friend :
                 mFriendsList) {
             friendsList.add(friend);
         }

@@ -13,14 +13,14 @@ public class FriendsListParserGson implements IFriendsListParser {
 
     private final InputStream mInputStream;
 
-    public FriendsListParserGson(InputStream pInputStream) {
+    public FriendsListParserGson(final InputStream pInputStream) {
         mInputStream = pInputStream;
     }
 
     @Override
     public IFriendsList parse() throws Exception {
-        Reader reader = new InputStreamReader(mInputStream);
-        FriendGson[] result = new Gson().fromJson(reader, FriendGson[].class);
+        final Reader reader = new InputStreamReader(mInputStream);
+        final FriendGson[] result = new Gson().fromJson(reader, FriendGson[].class);
         return new FriendsListGson(Arrays.asList(result));
     }
 

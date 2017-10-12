@@ -142,7 +142,7 @@ public class UserGson implements IUser {
     @Override
     public Date getFriendlyRegisteredTime() throws ParseException {
 
-        IUserFriendlyDate friendlyDate = new UserFriendlyDate(registered);
+        final IUserFriendlyDate friendlyDate = new UserFriendlyDate(registered);
         return friendlyDate.getFriendlyDate();
 
     }

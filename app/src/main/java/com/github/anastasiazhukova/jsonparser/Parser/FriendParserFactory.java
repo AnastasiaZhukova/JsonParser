@@ -7,11 +7,11 @@ import java.io.InputStream;
 
 public class FriendParserFactory {
 
-    IFriendParser createParserForJson(InputStream pInputStream) {
+    IFriendParser createParserForJson(final InputStream pInputStream) {
         return new FriendParserJson(pInputStream);
     }
 
-    IFriendParser createParserForGson(InputStream pInputStream) {
+    IFriendParser createParserForGson(final InputStream pInputStream) {
         return new FriendParserGson(pInputStream);
     }
 }

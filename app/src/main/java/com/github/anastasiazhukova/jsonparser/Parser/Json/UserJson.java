@@ -128,9 +128,9 @@ public class UserJson implements IUser {
 
     @Override
     public Date getFriendlyRegisteredTime() throws ParseException {
-        Long time = mJSONObject.optLong(registered);
+        final Long time = mJSONObject.optLong(registered);
         if (time != 0) {
-            IUserFriendlyDate friendlyDate = new UserFriendlyDate(time);
+            final IUserFriendlyDate friendlyDate = new UserFriendlyDate(time);
             return friendlyDate.getFriendlyDate();
         } else {
             return null;
@@ -149,8 +149,8 @@ public class UserJson implements IUser {
 
     @Override
     public String[] getTags() throws JSONException {
-        List<String> tagsList = new ArrayList<String>();
-        JSONArray tagsJSON = mJSONObject.optJSONArray(tags);
+        final List<String> tagsList = new ArrayList<String>();
+        final JSONArray tagsJSON = mJSONObject.optJSONArray(tags);
         for (int i = 0; i < tagsJSON.length(); i++) {
             tagsList.add(tagsJSON.getString(i));
         }
@@ -159,7 +159,7 @@ public class UserJson implements IUser {
 
     @Override
     public IFriendsList getFriends() throws Exception {
-        FriendsListParserFactory flpf = new FriendsListParserFactory();
+        final FriendsListParserFactory flpf = new FriendsListParserFactory();
         return flpf.createListParserForJSON(mJSONObject.optJSONArray(friends)).parse();
 
     }

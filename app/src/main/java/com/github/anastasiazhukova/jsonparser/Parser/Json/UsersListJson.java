@@ -10,14 +10,14 @@ public class UsersListJson implements IUsersList {
 
     private final List<UserJson> mUsersList;
 
-    public UsersListJson(List<UserJson> pUsersList) {
+    public UsersListJson(final List<UserJson> pUsersList) {
         mUsersList = pUsersList;
     }
 
     @Override
     public List<IUser> getUsersList() {
-        List<IUser> usersList = new ArrayList<>();
-        for (UserJson user :
+        final List<IUser> usersList = new ArrayList<>();
+        for (final UserJson user :
                 mUsersList) {
             usersList.add(user);
 

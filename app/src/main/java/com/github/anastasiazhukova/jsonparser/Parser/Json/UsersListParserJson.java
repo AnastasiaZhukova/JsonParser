@@ -15,16 +15,16 @@ public class UsersListParserJson implements IUsersListParser {
 
     private final InputStream mInputStream;
 
-    public UsersListParserJson(InputStream pInputStream) {
+    public UsersListParserJson(final InputStream pInputStream) {
         mInputStream = pInputStream;
     }
 
     @Override
     public IUsersList parse() throws Exception {
-        JSONArray jsonArray = new JSONArray(IOUtils.toString(mInputStream));
-        List<UserJson> usersJsonList = new ArrayList<>();
+        final JSONArray jsonArray = new JSONArray(IOUtils.toString(mInputStream));
+        final List<UserJson> usersJsonList = new ArrayList<>();
         for (int i = 0; i < jsonArray.length(); i++) {
-            JSONObject jsonObject = jsonArray.getJSONObject(i);
+            final JSONObject jsonObject = jsonArray.getJSONObject(i);
             usersJsonList.add(new UserJson(jsonObject));
         }
         return new UsersListJson(usersJsonList);

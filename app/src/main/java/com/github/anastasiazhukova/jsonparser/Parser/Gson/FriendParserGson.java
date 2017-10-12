@@ -12,13 +12,13 @@ public class FriendParserGson implements IFriendParser {
 
     private final InputStream mInputStream;
 
-    public FriendParserGson(InputStream pInputStream) {
+    public FriendParserGson(final InputStream pInputStream) {
         mInputStream = pInputStream;
     }
 
     @Override
     public IFriend parse() throws Exception {
-        Reader reader = new InputStreamReader(mInputStream);
+        final Reader reader = new InputStreamReader(mInputStream);
         return new Gson().fromJson(reader, FriendGson.class);
     }
 }

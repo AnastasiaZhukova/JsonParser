@@ -10,14 +10,14 @@ public class UsersListGson implements IUsersList {
 
     private List<UserGson> mUsersGSON;
 
-    public UsersListGson(List<UserGson> pUsersGSON) {
+    public UsersListGson(final List<UserGson> pUsersGSON) {
         mUsersGSON = pUsersGSON;
     }
 
     @Override
     public List<IUser> getUsersList() {
-        List<IUser> users = new ArrayList<>();
-        for (UserGson user :
+        final List<IUser> users = new ArrayList<>();
+        for (final UserGson user :
                 mUsersGSON) {
             users.add(user);
         }

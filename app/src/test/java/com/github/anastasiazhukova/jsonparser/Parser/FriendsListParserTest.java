@@ -40,16 +40,16 @@ public class FriendsListParserTest {
         mIHttpClient = mock(IHttpClient.class);
     }
 
-    private static String mJSONFileSource = "ListOfObjects/friends.json";
+    private static final String mJSONFileSource = "ListOfObjects/friends.json";
 
     @Test
     public void parseForJSON() throws Exception {
         mInputStream = InputStreamMocks.inputStream(mJSONFileSource);
         when(mIHttpClient.request(Matchers.anyString())).thenReturn(mInputStream);
-        InputStream response = mIHttpClient.request("any http");
+        final InputStream response = mIHttpClient.request("any http");
         final FriendsListParserFactory friendsListParserFactory = new FriendsListParserFactory();
         final IFriendsList friends = friendsListParserFactory.createListParserForJSON(response).parse();
-        List<IFriend> friendList = friends.getFriendsList();
+        final List<IFriend> friendList = friends.getFriendsList();
         assertEquals(friends.getFriendsList().size(), EXPECTED_LIST_SIZE);
         assertEquals(friendList.get(0).getId(), EXPECTED_ID);
         assertEquals(friendList.get(0).getName(), EXPECTED_NAME);
@@ -59,10 +59,10 @@ public class FriendsListParserTest {
     public void parseForGSON() throws Exception {
         mInputStream = InputStreamMocks.inputStream(mJSONFileSource);
         when(mIHttpClient.request(Matchers.anyString())).thenReturn(mInputStream);
-        InputStream response = mIHttpClient.request("any http");
+        final InputStream response = mIHttpClient.request("any http");
         final FriendsListParserFactory friendsListParserFactory = new FriendsListParserFactory();
         final IFriendsList friends = friendsListParserFactory.createListParserForGSON(response).parse();
-        List<IFriend> friendList=friends.getFriendsList();
+        final List<IFriend> friendList = friends.getFriendsList();
         assertEquals(friends.getFriendsList().size(), EXPECTED_LIST_SIZE);
         assertEquals(friendList.get(0).getId(), EXPECTED_ID);
         assertEquals(friendList.get(0).getName(), EXPECTED_NAME);

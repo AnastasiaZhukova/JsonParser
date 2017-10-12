@@ -9,15 +9,15 @@ import java.io.InputStream;
 
 public class FriendsListParserFactory {
 
-    public IFriendsListParser createListParserForJSON(InputStream pInputStream) {
+    public IFriendsListParser createListParserForJSON(final InputStream pInputStream) {
         return new FriendsListParserJson(pInputStream);
     }
 
-    public IFriendsListParser createListParserForJSON(JSONArray pJSONArray) {
+    public IFriendsListParser createListParserForJSON(final JSONArray pJSONArray) {
         return new FriendsListParserJson(pJSONArray);
     }
 
-    public IFriendsListParser createListParserForGSON(InputStream pInputStream) {
+    public IFriendsListParser createListParserForGSON(final InputStream pInputStream) {
         return new FriendsListParserGson(pInputStream);
     }
 }

@@ -8,16 +8,16 @@ import java.util.List;
 
 public class FriendsListGson implements IFriendsList {
 
-    private List<FriendGson> mFriendsList;
+    private final List<FriendGson> mFriendsList;
 
-    public FriendsListGson(List<FriendGson> pFriendsList) {
+    public FriendsListGson(final List<FriendGson> pFriendsList) {
         mFriendsList = pFriendsList;
     }
 
     @Override
     public List<IFriend> getFriendsList() {
-        List<IFriend> friendsList = new ArrayList<>();
-        for (FriendGson friend :
+        final List<IFriend> friendsList = new ArrayList<>();
+        for (final FriendGson friend :
                 mFriendsList) {
             friendsList.add(friend);
         }

@@ -43,13 +43,13 @@ public class UserParserTest {
         mIHttpClient = mock(IHttpClient.class);
     }
 
-    private static String mJSONFileSource = "OneObject/user.json";
+    private static final String mJSONFileSource = "OneObject/user.json";
 
     @Test
     public void parseForJSON() throws Exception {
         mInputStream = InputStreamMocks.inputStream(mJSONFileSource);
         when(mIHttpClient.request(Matchers.anyString())).thenReturn(mInputStream);
-        InputStream response = mIHttpClient.request("any http");
+        final InputStream response = mIHttpClient.request("any http");
         final UserParserFactory userParserFactory = new UserParserFactory();
         final IUser user = userParserFactory.createParserJSON(response).parse();
         assertEquals(user.getId(), EXPECTED_ID);
@@ -64,7 +64,7 @@ public class UserParserTest {
     public void parseForGSON() throws Exception {
         mInputStream = InputStreamMocks.inputStream(mJSONFileSource);
         when(mIHttpClient.request(Matchers.anyString())).thenReturn(mInputStream);
-        InputStream response = mIHttpClient.request("any http");
+        final InputStream response = mIHttpClient.request("any http");
         final UserParserFactory userParserFactory = new UserParserFactory();
         final IUser user = userParserFactory.createParserGSON(response).parse();
         assertEquals(user.getId(), EXPECTED_ID);
@@ -74,6 +74,5 @@ public class UserParserTest {
         assertEquals(user.getFriends().getFriendsList().get(0).getId(), EXPECTED_FIRST_FRIEND_ID);
         Log.d(TAG, user.getFriendlyRegisteredTime().toString());
     }
-
 
 }
