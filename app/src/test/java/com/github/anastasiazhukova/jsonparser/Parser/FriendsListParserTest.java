@@ -53,6 +53,20 @@ public class FriendsListParserTest {
         assertEquals(friends.getFriendsList().size(), EXPECTED_LIST_SIZE);
         assertEquals(friendList.get(0).getId(), EXPECTED_ID);
         assertEquals(friendList.get(0).getName(), EXPECTED_NAME);
+    }
+
+    @Test
+    public void parseForGSON() throws Exception {
+        mInputStream = InputStreamMocks.inputStream(mJSONFileSource);
+        when(mIHttpClient.request(Matchers.anyString())).thenReturn(mInputStream);
+        InputStream response = mIHttpClient.request("any http");
+        final FriendsListParserFactory friendsListParserFactory = new FriendsListParserFactory();
+        final IFriendsList friends = friendsListParserFactory.createListParserForGSON(response).parse();
+        List<IFriend> friendList=friends.getFriendsList();
+        assertEquals(friends.getFriendsList().size(), EXPECTED_LIST_SIZE);
+        assertEquals(friendList.get(0).getId(), EXPECTED_ID);
+        assertEquals(friendList.get(0).getName(), EXPECTED_NAME);
 
     }
+
 }
