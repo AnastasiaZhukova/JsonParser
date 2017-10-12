@@ -46,7 +46,7 @@ public class FriendParserTest {
         when(mIHttpClient.request(Matchers.anyString())).thenReturn(mInputStream);
         InputStream response = mIHttpClient.request("any http");
         final FriendParserFactory friendParserFactory = new FriendParserFactory();
-        final IFriend friend = friendParserFactory.createParserForJSON(response).parse();
+        final IFriend friend = friendParserFactory.createParserForJson(response).parse();
         assertEquals(friend.getId(), EXPECTED_ID);
         assertEquals(friend.getName(), EXPECTED_NAME);
 
