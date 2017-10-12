@@ -52,4 +52,18 @@ public class FriendParserTest {
 
     }
 
+    @Test
+    public void parseForGSON() throws Exception {
+        mInputStream = InputStreamMocks.inputStream(mJSONFileSource);
+        when(mIHttpClient.request(Matchers.anyString())).thenReturn(mInputStream);
+        InputStream response=mIHttpClient.request("any http");
+        final FriendParserFactory friendParserFactory = new FriendParserFactory();
+        final IFriend friend = friendParserFactory.createParserForGson(response).parse();
+        assertEquals(friend.getId(),EXPECTED_ID);
+        assertEquals(friend.getName(),EXPECTED_NAME);
+
+    }
+
+
+
 }
